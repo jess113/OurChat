@@ -1,0 +1,57 @@
+*{
+  box-sizing: border-box;
+}
+
+.App {
+  background:rgb(182, 22, 22);
+  background: #EB5757;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to top, #000000, #EB5757);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to top, #000000, #EB5757); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  height: 100vh;
+  text-align: center;
+}
+
+.header{
+  display: flex;
+  align-content: space-between;
+  flex-direction: row; 
+  font-size:40px;
+  font-family: 'Times New Roman', Times, serif;
+  background:rgba(251, 255, 0, 0.226);
+  color:white; 
+  padding: 10px 32px;
+  text-align: left;
+  border-bottom: 2px solid rgb(251, 255, 0);
+}
+
+.logo{
+  height: 42px;
+}
+
+.text-input{
+  color: white;
+  position:absolute;
+  bottom:0;
+  height:40px;
+  width:100%;
+  border-top:1px solid white;
+  display:flex;
+  align-items: center;
+}
+
+.text-input input{
+  width: calc(100% - 60px);
+  height: 100%;
+  font-size:24px;
+}
+
+.text-input button {
+  width: 60px;
+  height: 100%;
+  cursor: pointer;
+}
+
+.text-input button:hover {
+  background: teal;
+  color: white;
+}
