@@ -42,13 +42,23 @@
 .text-input input{
   width: calc(100% - 60px);
   height: 100%;
-  font-size:24px;
+  font-size: 24px;
+  border-radius: 15px;
+  border: 1px solid white;
+  position: absolute;
+  left: 10px;
+  background: black;
+  color:white;
 }
 
 .text-input button {
   width: 60px;
   height: 100%;
   cursor: pointer;
+  position: absolute;
+  right: 10px;
+  border-radius: 15px;
+  border: 1px solid white;
 }
 
 .text-input button:hover {
