@@ -4,7 +4,9 @@ class TextInput extends React.Component {
     render(){
         return(<div className="text-input">
             <input />
-            <button>SEND</button>
+            <button>
+                <p><i class="arrow up"></i></p>
+            </button>
         </div>)
     }
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import logo from './RedStar.png';
+import logo from './giphy.gif';
 import TextInput from './TextInput';
 
 function App() {
