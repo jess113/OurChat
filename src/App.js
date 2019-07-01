@@ -3,16 +3,28 @@ import './App.css';
 import logo from './giphy.gif';
 import TextInput from './TextInput';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="header">
-        <img src={logo} class="logo" alt="logo" />
-        OurChat
+class App extends React.Component {
+  state={
+    messages:[]
+  }
+
+  sendMessage = (m) => {
+    var messages = [...this.state.messages, m]
+    this.setState({messages})
+  }
+
+  render() {
+    console.log(this.state.messages)
+    return (
+      <div className="App">
+        <header className="header">
+          <img src={logo} class="logo" alt="logo" />
+          OurChat
       </header>
-      <TextInput />
-    </div>
-  );
+        <TextInput sendMessage={this.sendMessage} />
+      </div>
+    );
+  }
 }
 
 export default App;
