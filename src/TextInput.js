@@ -1,6 +1,7 @@
 import React from 'react';
 
 class TextInput extends React.Component {
+    
     state={
         text:"",
     }
@@ -18,7 +19,7 @@ class TextInput extends React.Component {
 
     render(){
         return(<div className="text-input">
-            <input value={this.state.text}
+            <input value={this.state.text} 
                 placeholder="Write your message here..."
                 onChange={e=> this.setState({text: e.target.value})}
                 onKeyPress={this.keyPress}

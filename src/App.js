@@ -1,27 +1,54 @@
 import React from 'react';
 import './App.css';
-import logo from './giphy.gif';
+import logomark from './giphy.gif';
 import TextInput from './TextInput';
+import NamePicker from './NamePicker';
+//import { FiChevronUp } from "react-icons/fi";
 
 class App extends React.Component {
+  
   state={
-    messages:[]
+    messages:[/*text, name*/],
+    name:'',
+    editName: false,
   }
 
-  sendMessage = (m) => {
-    var messages = [...this.state.messages, m]
-    this.setState({messages})
+  gotName = (name) => {
+    var newName = name
+    this.setState({name: newName})
+  }
+
+  gotMessage = (text) => {
+    var newMessages = [...this.state.messages, text]
+    this.setState({messages: newMessages})
   }
 
   render() {
-    console.log(this.state.messages)
+    var {messages} = this.state
+    //console.log(messages)
     return (
       <div className="App">
         <header className="header">
-          <img src={logo} class="logo" alt="logo" />
-          OurChat
-      </header>
-        <TextInput sendMessage={this.sendMessage} />
+          <div className="combination-mark">
+            <img src={logomark} class="logomark" alt="logomark" />
+            OurChat
+          </div>
+          <NamePicker name={this.state.name}
+            editName={this.state.editName}
+            changeName={this.gotName}
+            setEditName={()=> this.setState({editName: !this.state.editName})}
+          />
+        </header>
+        <main className="messages">
+          {messages.map((m,i)=>{
+            return (<div key={i} className="bubble-wrap">
+              <div className="bubble">
+                <span>{m}</span>
+              </div>
+            </div>)
+          })}
+        </main>
+        <TextInput sendMessage={this.gotMessage} />
       </div>
     );
   }

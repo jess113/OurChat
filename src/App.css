@@ -7,13 +7,13 @@
   background: -webkit-linear-gradient(to bottom, #2C5364, #203A43, #0F2027);  /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to bottom, #2C5364, #203A43, #0F2027); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   height: 100vh;
-  text-align: center;
   overflow:hidden;
 }
 
 .header{
   display: flex;
   align-items: center;
+  justify-content: space-between;
   flex-direction: row; 
   font-size:40px;
   font-family: 'Courier New', Courier, monospace;
@@ -26,9 +26,53 @@
   border-bottom: 2px solid pink;
 }
 
-.logo{
+.logomark{
   height: 42px;
 }
+.combination-mark{
+  display: flex;
+  align-content: center;
+}
+
+.edit-username{
+  display: flex;
+  align-items: center;
+}
+.name-button{
+  height:29px;
+  margin:0 6px;
+  background:transparent;
+  border:1px solid pink;
+  color:pink;
+  font-size:10px;
+  padding:7px;
+  cursor: pointer;
+}
+.name-button:hover{
+  background:teal;
+}
+.name-button[disabled]{
+  background: black;
+  color: pink;
+  cursor: default;
+}
+.name-input{
+  color:pink;
+  height:31px;
+  border:1px solid pink;
+  border-radius:14px;
+  padding-left:12px;
+  background:#1f1e2e;
+  padding-bottom:2px;
+  font-size:12px;
+}
+.username{
+  display: flex;
+  align-items: center;
+  margin-right:12px;
+  font-size:16px;
+}
+
 
 .text-input{
   color: pink;
@@ -43,7 +87,6 @@
   background: -webkit-linear-gradient(to right, #2F0743, #41295a);  /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to right, #2F0743, #41295a); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */  
 }
-
 .text-input > input{
   width: calc(100% - 20px);
   height: calc(100% - 5px);
@@ -58,7 +101,6 @@
   color:pink;
   outline: none;
 }
-
 .text-input > button {
   width: 60px;
   height: calc(100% - 5px);
@@ -73,17 +115,16 @@
   color: pink;
   outline: none;  
 }
-
 .text-input > button:hover {
   background: teal;
   color: whitesmoke;
 }
-
 .text-input > button[disabled] {
   background: black;
   color: black;
   cursor: default;
 }
+
 
 i {
   border: solid pink;
@@ -97,4 +138,70 @@ i {
 .up {
   transform: rotate(-135deg);
   -webkit-transform: rotate(-135deg);
+}
+
+
+.messages{
+  height: calc(100% - 107px);
+  overflow-y: scroll;
+  scrollbar-width: none; /* hides scroball for Firefox */
+  -ms-overflow-style: none;  /* IE 10+ */
+}
+.messages::-webkit-scrollbar { /* WebKit */
+  width: 0;
+  height: 0;
+}
+
+.bubble-wrap{
+  width:100%;
+  padding:8px 20px;
+  display:flex;
+  position: relative;
+}
+.bubble-wrap[from="me"] {
+  flex-direction:row-reverse;
+}
+.bubble{
+  border-radius:10px;
+  padding: 8px 12px;
+  font-size: 14px;
+  position:relative;
+  background: black;
+  border: 1px solid pink;
+  margin-left:5px;
+}
+.bubble:before{
+  content:"";
+  width:12px;
+  height:12px;
+  transform:rotate(45deg);
+  background:#41295a;
+  border: 1px solid pink;
+  position:absolute;
+  left:-6px;
+  top:11px;
+}
+.bubble-wrap[from="me"] .bubble:before{
+  left:auto;
+  right:-7px;
+}
+.bubble:after{
+  content:"";
+  background:#41295a;
+  position:absolute;
+  top:0;left:0.5px;right:0.3px;bottom:0.3px;
+  border-radius:9px;
+}
+.bubble > span {
+  color:white;
+  position:relative;
+  font-family: 'Courier New', Courier, monospace;
+  z-index:101;
+}
+.bubble-name{
+  position: absolute;
+  color: white;
+  top: -5px;
+  font-size:10px;
+  left: 30px;
 }
