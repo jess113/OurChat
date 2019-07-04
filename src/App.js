@@ -8,7 +8,7 @@ import NamePicker from './NamePicker';
 class App extends React.Component {
   
   state={
-    messages:[/*text, name*/],
+    messages:[],
     name:'',
     editName: false,
   }
@@ -42,8 +42,11 @@ class App extends React.Component {
         <main className="messages">
           {messages.map((m,i)=>{
             return (<div key={i} className="bubble-wrap">
-              <div className="bubble">
-                <span>{m}</span>
+              <div className="message">
+                <span className="sender-name">{this.state.name}</span>
+                <div className="bubble">
+                  <span>{m}</span>
+                </div>
               </div>
             </div>)
           })}
