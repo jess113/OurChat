@@ -144,6 +144,8 @@ i {
 
 
 .messages{
+  display: flex;
+  flex-direction: column-reverse;
   height: calc(100% - 107px);
   overflow-y: scroll;
   scrollbar-width: none; /* hides scroball for Firefox */
@@ -163,17 +165,7 @@ i {
 .bubble-wrap[from="me"]{
   flex-direction:row-reverse;
 }
-.message{
-  display: flex;
-  align-items: flex-start;
-  flex-direction: column;
-  color:pink;
-  font-family: 'Courier New', Courier, monospace;
-  font-size:12px;
-}
-.sender-name{
-  margin-left:5px;
-}
+
 .bubble{
   border-radius:10px;
   padding: 8px 12px;
@@ -215,6 +207,7 @@ i {
   position: absolute;
   color: white;
   top: -5px;
+  font-family: 'Courier New', Courier, monospace;
   font-size:10px;
   left: 30px;
 }
