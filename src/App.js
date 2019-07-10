@@ -22,10 +22,10 @@ class App extends React.Component {
       this.setState({name})
     }
     firebase.initializeApp({
-      apiKey: "AIzaSyBAJVwrP5J4AhVKd5ijYtcTF9XMV6tIcY4",
-      authDomain: "msgr-2.firebaseapp.com",
-      projectId: "msgr-2",
-      storageBucket: "msgr-2.appspot.com",
+      apiKey: "AIzaSyAmXtr1nXNQzvpiyeJ9Niq021I00D14aDw",
+      authDomain: "ourchat-hcde.firebaseapp.com",
+      projectId: "ourchat-hcde",
+      storageBucket: "ourchat-hcde.appspot.com",
     });
     this.db = firebase.firestore();
     this.db.collection("messages").onSnapshot((snapshot) => {
@@ -86,14 +86,7 @@ class App extends React.Component {
         </header>
         <main className="messages">
           {messages.map((m,i)=>{
-            return (<div key={i} className="bubble-wrap" from={m.from===name ? "me" : "you"}>  
-              {m.from!==name && <div className="bubble-name">
-                {m.from}
-              </div>}
-              <div className="bubble">
-                <span>{m.text}</span>
-              </div>
-            </div>)
+            return <Message key={i} m={m} name={name}/>
           })}
         </main>
         <TextInput sendMessage={text=> this.send({text})} />
@@ -103,3 +96,15 @@ class App extends React.Component {
 }
 
 export default App;
+
+function Message(props) {
+  var {m, name} = props
+  return (<div className="bubble-wrap" from={m.from===name ? "me" : "you"}>  
+  {m.from!==name && <div className="bubble-name">
+    {m.from}
+  </div>}
+  <div className="bubble">
+    <span>{m.text}</span>
+  </div>
+</div>)
+}
