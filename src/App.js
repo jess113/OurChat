@@ -6,6 +6,7 @@ import NamePicker from './NamePicker';
 import * as firebase from "firebase/app";
 import "firebase/firestore";
 import "firebase/storage";
+import Camera from 'react-snap-pic';
 //import { FiChevronUp } from "react-icons/fi";
 
 class App extends React.Component {
@@ -14,6 +15,7 @@ class App extends React.Component {
     messages:[],
     name:'',
     editName: false,
+    showCamera:false,
   }
   
   componentWillMount(){
@@ -68,6 +70,11 @@ class App extends React.Component {
       this.setState({editName})
   }
 
+  takePicture = (img) => {
+    console.log(img)
+    this.setState({showCamera:false})
+  }
+
   render() {
     var {messages, name, editName} = this.state
     //console.log(messages)
@@ -89,7 +96,9 @@ class App extends React.Component {
             return <Message key={i} m={m} name={name}/>
           })}
         </main>
-        <TextInput sendMessage={text=> this.send({text})} />
+        <TextInput sendMessage={text=> this.send({text})} 
+          showCamera={()=> this.setState({showCamera: true})}/>
+        {this.state.showCamera && <Camera takePicture={this.takePicture} />}
       </div>
     );
   }

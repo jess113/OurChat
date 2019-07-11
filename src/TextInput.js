@@ -1,4 +1,5 @@
 import React from 'react';
+import {FiCamera} from 'react-icons/fi';
 
 class TextInput extends React.Component {
     
@@ -19,6 +20,10 @@ class TextInput extends React.Component {
 
     render(){
         return(<div className="text-input">
+            <button onClick={this.props.showCamera}
+                style={{left:10, right:'auto'}}>
+                <FiCamera style={{height:15, width:15}} />
+            </button>
             <input value={this.state.text} 
                 placeholder="Write your message here..."
                 onChange={e=> this.setState({text: e.target.value})}
