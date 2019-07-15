@@ -7,6 +7,7 @@ import * as firebase from "firebase/app";
 import "firebase/firestore";
 import "firebase/storage";
 import Camera from 'react-snap-pic';
+import Div100vh from 'react-div-100vh'
 //import { FiChevronUp } from "react-icons/fi";
 
 class App extends React.Component {
@@ -70,16 +71,20 @@ class App extends React.Component {
       this.setState({editName})
   }
 
-  takePicture = (img) => {
-    console.log(img)
+  takePicture = async (img) => {
     this.setState({showCamera:false})
+    const imgID = Math.random().toString(36).substring(7);
+    var storageRef = firebase.storage().ref();
+    var ref = storageRef.child(imgID+'.jpg');
+    await ref.putString(img, 'data_url')
+    this.send({img: imgID})
   }
 
   render() {
     var {messages, name, editName} = this.state
     //console.log(messages)
     return (
-      <div className="App">
+      <Div100vh className="App">
         <header className="header">
           <div className="combination-mark">
             <img src={logomark} class="logomark" alt="logomark" />
@@ -99,13 +104,15 @@ class App extends React.Component {
         <TextInput sendMessage={text=> this.send({text})} 
           showCamera={()=> this.setState({showCamera: true})}/>
         {this.state.showCamera && <Camera takePicture={this.takePicture} />}
-      </div>
+      </Div100vh>
     );
   }
 }
 
 export default App;
 
+const bucket = 'https://firebasestorage.googleapis.com/v0/b/ourchat-hcde.appspot.com/o/'
+const suffix = '.jpg?alt=media'
 function Message(props) {
   var {m, name} = props
   return (<div className="bubble-wrap" from={m.from===name ? "me" : "you"}>  
@@ -114,6 +121,7 @@ function Message(props) {
   </div>}
   <div className="bubble">
     <span>{m.text}</span>
+    {m.img && <img alt="pic" src={bucket+m.img+suffix} />}
   </div>
 </div>)
 }

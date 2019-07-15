@@ -15,7 +15,7 @@
   align-items: center;
   justify-content: space-between;
   flex-direction: row; 
-  font-size:40px;
+  font-size: 40px;
   font-family: 'Courier New', Courier, monospace;
   background: #41295a;  /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, #2F0743, #41295a);  /* Chrome 10-25, Safari 5.1-6 */
@@ -28,6 +28,7 @@
 
 .logomark{
   height: 42px;
+  margin-right: 1.5rem;
 }
 .combination-mark{
   display: flex;
@@ -72,13 +73,13 @@
   display: flex;
   align-items: center;
   margin-right:12px;
-  font-size:16px;
+  font-size:1rem;
 }
 
 
 .text-input{
   color: pink;
-  position:absolute;
+  position:fixed;
   bottom:0;
   height:40px;
   width:100%;
@@ -201,6 +202,10 @@ i {
   color:white;
   position:relative;
   font-family: 'Courier New', Courier, monospace;
+  z-index:101;
+}
+.bubble img {
+  position:relative;
   z-index:101;
 }
 .bubble-name{
