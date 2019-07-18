@@ -35,10 +35,22 @@ class App extends React.Component {
       snapshot.docChanges().forEach((change) => {
         if (change.type === "added") {
           //console.log(change.doc.data())
-          this.receive(change.doc.data())
+          this.receive({
+            ...change.doc.data(),
+            id: change.doc.id
+          })
+        }
+        if (change.type==='removed'){
+          this.remove(change.doc.id)
         }
       })
     })
+  } // end componentWillMount
+
+  remove = (id) => {
+    var msgs = [...this.state.messages]
+    var messages = msgs.filter(m=> m.id!==id)
+    this.setState({messages})
   }
 
   receive = (m) => {
@@ -98,7 +110,13 @@ class App extends React.Component {
         </header>
         <main className="messages">
           {messages.map((m,i)=>{
-            return <Message key={i} m={m} name={name}/>
+            return (<Message key={i} m={m} name={name}
+              onClick={()=> {
+                if (name===m.from || name=== 'Jesse') {
+                  this.db.collection('messages').doc(m.id).delete()
+                }
+              }}
+            />)
           })}
         </main>
         <TextInput sendMessage={text=> this.send({text})} 
@@ -114,8 +132,11 @@ export default App;
 const bucket = 'https://firebasestorage.googleapis.com/v0/b/ourchat-hcde.appspot.com/o/'
 const suffix = '.jpg?alt=media'
 function Message(props) {
-  var {m, name} = props
-  return (<div className="bubble-wrap" from={m.from===name ? "me" : "you"}>  
+  var {m, name, onClick} = props
+  return (<div className="bubble-wrap"
+    from={m.from===name ? "me" : "you"}
+    onClick={onClick}
+  >  
   {m.from!==name && <div className="bubble-name">
     {m.from}
   </div>}
