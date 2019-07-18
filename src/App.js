@@ -47,12 +47,6 @@ class App extends React.Component {
     })
   } // end componentWillMount
 
-  remove = (id) => {
-    var msgs = [...this.state.messages]
-    var messages = msgs.filter(m=> m.id!==id)
-    this.setState({messages})
-  }
-
   receive = (m) => {
     const messages = [m, ...this.state.messages]
     messages.sort((a,b)=>b.ts-a.ts)
@@ -92,6 +86,19 @@ class App extends React.Component {
     this.send({img: imgID})
   }
 
+  remove = (id) => {
+    var msgs = [...this.state.messages]
+    var messages = msgs.filter(m=> m.id!==id)
+    this.setState({messages})
+  }
+
+  deleteMessage = (m) => {
+    var {name} = this.state
+    if (name===m.from || name=== 'Jesse') {
+      this.db.collection('messages').doc(m.id).delete()
+    }
+  }
+
   render() {
     var {messages, name, editName} = this.state
     //console.log(messages)
@@ -111,11 +118,7 @@ class App extends React.Component {
         <main className="messages">
           {messages.map((m,i)=>{
             return (<Message key={i} m={m} name={name}
-              onClick={()=> {
-                if (name===m.from || name=== 'Jesse') {
-                  this.db.collection('messages').doc(m.id).delete()
-                }
-              }}
+              onClick={()=> this.deleteMessage(m)}
             />)
           })}
         </main>
