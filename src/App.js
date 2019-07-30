@@ -25,10 +25,10 @@ class App extends React.Component {
       this.setState({name})
     }
     firebase.initializeApp({
-      apiKey: "AIzaSyAmXtr1nXNQzvpiyeJ9Niq021I00D14aDw",
-      authDomain: "ourchat-hcde.firebaseapp.com",
-      projectId: "ourchat-hcde",
-      storageBucket: "ourchat-hcde.appspot.com",
+      apiKey: "AIzaSyB936E-danRGaKD9leBq2UzOWycpwmFVPo",
+      authDomain: "outchat-hcde.firebaseapp.com",
+      projectId: "outchat-hcde",
+      storageBucket: "outchat-hcde.appspot.com",
     });
     this.db = firebase.firestore();
     this.db.collection("messages").onSnapshot((snapshot) => {
@@ -107,7 +107,7 @@ class App extends React.Component {
         <header className="header">
           <div className="combination-mark">
             <img src={logomark} class="logomark" alt="logomark" />
-            OurChat
+            OutChat
           </div>
           <NamePicker name={name}
             editName={editName}
@@ -132,7 +132,7 @@ class App extends React.Component {
 
 export default App;
 
-const bucket = 'https://firebasestorage.googleapis.com/v0/b/ourchat-hcde.appspot.com/o/'
+const bucket = 'https://firebasestorage.googleapis.com/v0/b/outchat-hcde.appspot.com/o/'
 const suffix = '.jpg?alt=media'
 function Message(props) {
   var {m, name, onClick} = props
